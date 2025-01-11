@@ -49,7 +49,6 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
         setAppState(formState);
     };
 
-    // Обработчик сброса формы
     const handleReset = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setFormState(defaultArticleState);

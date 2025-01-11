@@ -11,7 +11,7 @@ import { ArticleParamsForm } from '../article-params-form';
 import styles from './App.module.scss';
 
 export const App = () => {
-    // Переименование appState в articleState для лучшего понимания его назначения
+    
     const [articleState, setArticleState] =
         useState<ArticleStateType>(defaultArticleState);
 
