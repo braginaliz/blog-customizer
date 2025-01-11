@@ -1,4 +1,3 @@
-
 import { ArrowButton } from 'components/arrow-button';
 import { Button } from 'components/button';
 import { Text } from '../text';
@@ -19,19 +18,13 @@ import { RadioGroup } from '../radio-group';
 import { Separator } from '../separator';
 import { useState, FormEvent } from 'react';
 
-
 export type ArticleParamsFormProps = {
     setAppState: (value: ArticleStateType) => void;
 };
 
-
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
     const { setAppState } = props;
-
-
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    
-
     const [formState, setFormState] = useState<ArticleStateType>(defaultArticleState);
 
     const handleChange = (fieldName: string) => {
@@ -42,7 +35,6 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
             }));
         };
     };
-
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -55,15 +47,25 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
         setAppState(defaultArticleState);
     };
 
+    const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const target = event.target as HTMLElement; 
+        if (!target.closest(`.${styles.container}`)) {
+            setIsMenuOpen(false);
+        }
+    };
+
     return (
         <>
             <ArrowButton
                 isActive={isMenuOpen}
                 onClick={() => setIsMenuOpen((currentIsMenuOpen) => !currentIsMenuOpen)}
             />
-            <div
-                onClick={() => setIsMenuOpen(false)}
-                className={clsx(styles.overlay, isMenuOpen && styles.overlay_open)}></div>
+            {isMenuOpen && (
+                <div
+                    onClick={handleOverlayClick}
+                    className={clsx(styles.overlay, isMenuOpen && styles.overlay_open)}>
+                </div>
+            )}
             <aside
                 className={clsx(styles.container, isMenuOpen && styles.container_open)}>
                 <form
