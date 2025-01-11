@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import { useState, CSSProperties } from 'react';
 
 import {
-	ArticleStateType,
-	defaultArticleState,
+    ArticleStateType,
+    defaultArticleState,
 } from '../../constants/articleProps';
 import { Article } from '../article';
 import { ArticleParamsForm } from '../article-params-form';
@@ -11,23 +11,24 @@ import { ArticleParamsForm } from '../article-params-form';
 import styles from './App.module.scss';
 
 export const App = () => {
-	const [appState, setAppState] =
-		useState<ArticleStateType>(defaultArticleState);
+    // Переименование appState в articleState для лучшего понимания его назначения
+    const [articleState, setArticleState] =
+        useState<ArticleStateType>(defaultArticleState);
 
-	return (
-		<div
+    return (
+        <div
 			className={clsx(styles.main)}
-			style={
-				{
-					'--font-family': appState.fontFamilyOption.value,
-					'--font-size': appState.fontSizeOption.value,
-					'--font-color': appState.fontColor.value,
-					'--container-width': appState.contentWidth.value,
-					'--bg-color': appState.backgroundColor.value,
-				} as CSSProperties
-			}>
-			<ArticleParamsForm setAppState={setAppState} />
-			<Article />
-		</div>
-	);
+            style={
+                {
+                    '--font-family': articleState.fontFamilyOption.value,
+                    '--font-size': articleState.fontSizeOption.value,
+                    '--font-color': articleState.fontColor.value,
+                    '--container-width': articleState.contentWidth.value,
+                    '--bg-color': articleState.backgroundColor.value,
+                } as CSSProperties
+            }>
+            <ArticleParamsForm setAppState={setArticleState} />
+            <Article />
+        </div>
+    );
 };
